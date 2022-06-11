@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOANTIER</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style1.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  
+  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+      
+  </head>
+  <body>
+
+  	<section>
+      <input type="checkbox" id="check">
+      <header>
+        </div>
+        <h2><a href="/" class="logo">LoanTier</a></h2>
+        <div class="navigation">
+          <a href="/">Home</a>
+          <a href="/about">About LoanTier</a>
+          <a href="/dashboard">Dashboard</a>
+          
+          <a href="/predict">Predictor</a>
+        </div>
+        <label for="check">
+        <i class="fas fa-bars menu-btn"></i>
+        <i class="fas fa-times close-btn"></i>
+        </label>
+      </header>
+      <div class="content" style="margin-top: 8%;">
+        <div class="info">
+          <h2>MONEY + LIFE </h2><h3><span>We are listening to your needs</span></h3>
+          <p> "LOANTIER" is a web app, it predicts the loan approval applications.</p>
+          <a href="/about" class="info-btn">More info</a>
+        </div>
+      </div><br><br><br><br><br><br>
+      <div class="media-icons">
+        <a href="https://www.linkedin.com/in/priyanka-r-3085a61a7/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Priyar596/LOANTIER"><i class="fab fa-github"></i></a>
+        <a href="https://medium.com/@priyar596"><i class="fab fa-medium"></i></a>
+        
+      </div>
+    </section>
+<br><br><br>
+<div class="container">
+    <h1>Details : </h1>
+    <h3>This is a basic machine learning based loan prediction app.</h3>
+    <p>This is a classification problem in which we need to classify whether the loan will be approved or not. classification refers to a predictive modeling problem where a class label is predicted for a given example of input data.</p>
+    <p>The prediction about the loan is made with the help of the machine learning model which itself is trained on the dataset.</p>
+    <p>So with the following paragraph I gonna be describing about this app.</p>
+    <h2>Problem Statement </h2>
+    <p>Dream Housing Finance company deals in all kinds of home loans. They have a presence across all urban, semi-urban and rural areas. The customer first applies for a home loan and after that, the company validates the customer eligibility for the loan.</p>
+
+<p>The company wants to automate the loan eligibility process (real-time) based on customer detail provided while filling out online application forms. These details are Gender, Marital Status, Education, number of Dependents, Income, Loan Amount, Credit History, and others.</p>
+
+<p>To automate this process, they have provided a dataset to identify the customer segments that are eligible for loan amounts so that they can specifically target these customers.</p>
+
+<p>As mentioned above this is a Binary Classification problem in which we need to predict our Target label which is “Loan Status”.</p>
+
+<p>Loan status can have two values: Yes or NO.</p>
+<p>
+Yes: if the loan is approved</p>
+<p>
+NO: if the loan is not approved</p>
+<p>
+So using the training dataset we will train our model and try to predict our target column that is “Loan Status” on the test dataset.</p>
+
+
+    <br><br><br><br>    <div class="container">
+    <h1>Dashboard : </h1>
+    
+    <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='1 - Copy.png') }}"/>
+   </div><br>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='3 - Copy.png') }}"/>
+   </div><br>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='4 - Copy.png') }}"/>
+   </div><br>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='5 - Copy.png') }}"/>
+   </div><br>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='6 - Copy.png') }}"/>
+   </div>
+    
+</div>
+<br><br><br><br>
+
+
+    
+
+</div>
+    <footer>
+      <p>
+        Developed with ❤️ by Priya
+      </p> 
+      <div class="media-icons">
+        <a href="https://www.linkedin.com/in/priyanka-r-3085a61a7/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Priyar596"><i class="fab fa-github"></i></a>
+                <a href="https://medium.com/@priyar596"><i class="fab fa-medium"></i></a>
+
+      </div>
+    </footer>
+
+  </body>
+</html>

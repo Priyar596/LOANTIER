@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOANTIER</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style1.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  
+  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+      
+  </head>
+  <body>
+
+  	<section>
+      <input type="checkbox" id="check">
+      <header>
+        </div>
+        <h2><a href="/" class="logo">LoanTier</a></h2>
+        <div class="navigation">
+          <a href="/">Home</a>
+          <a href="/about">About LoanTier</a>
+          <a href="/dashboard">Dashboard</a>
+          
+          <a href="/predict">Predictor</a>
+        </div>
+        <label for="check">
+        <i class="fas fa-bars menu-btn"></i>
+        <i class="fas fa-times close-btn"></i>
+        </label>
+      </header>
+      <div class="content" style="margin-top: 8%;">
+        <div class="info">
+          <h2>Dashboard Page </h2>
+          <a href="/about" class="info-btn">More info</a>
+        </div>
+      </div><br><br><br><br><br><br>
+      <div class="media-icons">
+        <a href="https://www.linkedin.com/in/priyanka-r-3085a61a7/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Priyar596/LOANTIER"><i class="fab fa-github"></i></a>
+        <a href="https://medium.com/@priyar596"><i class="fab fa-medium"></i></a>
+        
+      </div>
+    </section>
+    <br><br><br><br>    <div class="container">
+    <h1>Dashboard : </h1>
+    <p>Tableau dashboard is well coerced and informative about the data set. The dashboard consists of 6 sheets;</p>
+    <p>1. It gives a representation of the map of the USA and the color gradient gives us the average income for that state.</p>
+<p>2. It represents balance_annual_inc vs grades, grouped by defaulters and non-defaulters, which gives us a clear idea that defaulters for each grade had a higher loan to annual income ratio.</p>
+<p>3. It gives us the distribution of all the loans over the years for the lending club.</p>
+<p>4. It shows a box plot for the interest rate at each grade, quite evident that for lower grades the interest rates are higher.</p>
+<p>5. It is the distribution between the average interest rate and loan amount issued, grouped by defaulters and non-defaulters.</p>
+<p>6. It is a representation by the size of the reason behind loan issuance.</p>
+<p>Now, because of this coercive nature of the dashboard, the user can visualize the data by selecting a state and all sheets in the dashboard will be filtered based on the state provided. This gives the user a brighter insight into the state and how the data is associated with it.</p>
+    <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='1 - Copy.png') }}"/>
+   </div><br>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='3 - Copy.png') }}"/>
+   </div><br>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='4 - Copy.png') }}"/>
+   </div><br>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='5 - Copy.png') }}"/>
+   </div><br>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='6 - Copy.png') }}"/>
+   </div>
+    
+</div><br><br><br><br>
+
+
+    <footer>
+      <p>
+        Developed with ❤️ by Priya
+      </p> 
+      <div class="media-icons">
+        <a href="https://www.linkedin.com/in/priyanka-r-3085a61a7/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Priyar596"><i class="fab fa-github"></i></a>
+                <a href="https://medium.com/@priyar596"><i class="fab fa-medium"></i></a>
+
+      </div>
+    </footer>
+
+  </body>
+</html>

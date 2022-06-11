@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOANTIER</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style1.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  
+  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+      
+  </head>
+  <body>
+
+  	<section>
+      <input type="checkbox" id="check">
+      <header>
+        </div>
+        <h2><a href="/" class="logo">LoanTier</a></h2>
+        <div class="navigation">
+          <a href="/">Home</a>
+          <a href="/about">About LoanTier</a>
+          <a href="/dashboard">Dashboard</a>
+          
+          <a href="/predict">Predictor</a>
+        </div>
+        <label for="check">
+        <i class="fas fa-bars menu-btn"></i>
+        <i class="fas fa-times close-btn"></i>
+        </label>
+      </header>
+      <div class="content" style="margin-top: 8%;">
+        <div class="info">
+          <h2>About Page </h2>
+          <a href="/about" class="info-btn">More info</a>
+        </div>
+      </div><br><br><br><br><br><br>
+      <div class="media-icons">
+        <a href="https://www.linkedin.com/in/priyanka-r-3085a61a7/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Priyar596/LOANTIER"><i class="fab fa-github"></i></a>
+        <a href="https://medium.com/@priyar596"><i class="fab fa-medium"></i></a>
+        
+      </div>
+    </section>
+<br><br><br><br>    <div class="container">
+    <h1>Introduction : </h1>
+    <p>Loans are the core business of banks. The main profit comes directly from the loan’s interest. The loan companies grant a loan after an intensive process of verification and validation. However, they still don’t have assurance if the applicant is able to repay the loan with no difficulties.</p>
+
+<p>In this tutorial, we’ll build a predictive model to predict if an applicant is able to repay the lending company or not. We will prepare the data using Jupyter Notebook and use various models to predict the target variable.</p>
+    <h2>Table of Contents </h2>
+    <p><ul><li>Getting the system ready and loading the data</li>
+<li>Understanding the data</li>
+<li>Exploratory Data Analysis (EDA)</li>
+i. Univariate Analysis<br>
+ii. Bivariate Analysis
+<li>Missing value and outlier treatment</li>
+<li>Evaluation Metrics for classification problems</li>
+<li>Model Building: Part 1</li>
+<li>Logistic Regression using stratified k-folds cross-validation</li>
+<li>Feature Engineering</li>
+<li>Model Building: Part 2</li>
+i. Logistic Regression<br>
+ii. Decision Tree<br>
+iii. Random Forest<br>
+iv. XGBoost</ul></p>
+
+<h2>About the dataset</h2>
+<h3>Data</h3>
+<p>For this problem, we have three CSV files: train, test, and sample submission.</p>
+
+<p><u>Train file</u> will be used for training the model, i.e. our model will learn from this file. It contains all the independent variables and the target variable.</p>
+<p><u>Test file</u> contains all the independent variables, but not the target variable. We will apply the model to predict the target variable for the test data.</p>
+<p><u>Sample submission file</u> contains the format in which we have to submit out predictions
+<p>So train and test dataset would have the same columns except for the target column that is “Loan Status”.</p>
+
+<p>Train dataset:</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='pasted image 0.png') }}"/>
+   </div>
+<br>
+   <h3>Load Essential Python Libraries</h3>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='1.png') }}"/>
+   </div><br>
+   <h3>Load Training/ Test Dataset
+</h3>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='2.png') }}"/>
+   </div><br>
+   <h3>Size of Train/Test Data</h3>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='3.png') }}"/>
+   </div><br>
+   <p>So we have 614 rows and 13 columns in our training dataset.</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='4.png') }}"/>
+   </div>
+   <p>In test data, we have 367 rows and 12 columns because the target column is not included in the test data.</p>
+<br>
+<h3>First look at the Dataset</h3>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='5.png') }}"/>
+   </div><br>
+<p><u>Categorical Columns:</u> Gender (Male/Female), Married (Yes/No), Number of dependents (Possible values:0,1,2,3+), Education (Graduate / Not Graduate), Self-Employed (No/Yes), credit history(Yes/No), Property Area (Rural/Semi-Urban/Urban) and Loan Status (Y/N)(i. e. Target variable)</p>
+<p><u>
+Numerical Columns:</u> Loan ID, Applicant Income, Co-applicant Income, Loan Amount, and Loan amount term</p></p>
+<h3>Data Preprocessing</h3>
+<p>Concatenating the train and test data for data preprocessing:</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='6.png') }}"/>
+   </div><br>
+   <p>dropping the unwanted column :</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='7.png') }}"/>
+   </div><br>
+<p>Identify missing values :</p>
+
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='8.png') }}"/>
+   </div><br>
+   <p>Imputing the missing values:</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='9.png') }}"/>
+   </div><br>
+   <p><ul><li>Fill null values with mode
+</li></ul>
+Next, we will be using Iterative imputer for filling missing values of LoanAmount and Loan_Amount_Term</p>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='10.png') }}"/>
+   </div><br>
+<p>So now as we have imputed all the missing values we go on to mapping the categorical variables with the integers.</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='11.png') }}"/>
+   </div>
+   
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='12.png') }}"/>
+   </div>
+  <br>
+<p>We map the values so that we can input the train data into the model as the model does not accept any string values.</p>
+<br>
+<h2>Exploratory Data Analysis (EDA) </h2>
+<p>Splitting the data to new_train and new_test so that we can perform EDA.</p>
+ <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='13.png') }}"/>
+   </div><br>
+   <p>Mapping ‘N’ to 0 and ‘Y’ to 1</p>
+ <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='14.png') }}"/>
+   </div><br>
+   <p>Univariate Analysis:</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='15.png') }}"/>
+   </div><br>
+   <p>Output:</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='16.png') }}"/>
+   </div><br>
+   <h3>Univariate Analysis Observations</h3>
+<p>1.More Loans are approved Vs Rejected</p>
+
+<p>2.Count of Male applicants is more than Female</p>
+
+<p>3.Count of Married applicant is more than Non-married</p>
+
+<p>4.Count of graduate is more than non-Graduate</p>
+
+<p>5.Count of self-employed is less than that of Non-Self-employed</p>
+
+<p>6.Maximum properties are located in Semiurban areas</p>
+
+<p>7.Credit History is present for many applicants</p>
+
+<p>8.The count of applicants with several dependents=0 is maximum.</p><br>
+<h3>Bivariate Analysis</h3>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='17.png') }}"/>
+   </div><br>
+<p>Mean ApplicantIncome of 0 and 1 are almost the same (o: no,1: Yes)</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='18.png') }}"/>
+   </div><br>
+<p>Mean Co- ApplicantIncome of 1 is slightly more than 0 (o: no,1 Yes)</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='19.png') }}"/>
+   </div><br>
+<p>The mean value of Loan Amount applied by males (0) is slightly higher than Females(1).</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='20.png') }}"/>
+   </div><br>
+<p>If you are married then the loan amount requested is slightly higher than non-married</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='21.png') }}"/>
+   </div><br>
+   <p>Male have higher Co-applicant income than females in all three property areas</p>
+
+<p>Correlation matrix</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='22.png') }}"/>
+   </div><br>
+   <p>Output</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='23.png') }}"/>
+   </div><br>
+<h4>Feature Engineering</h4>
+<p>Total Income :</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='24.png') }}"/>
+   </div>
+<p>EMI :</p>
+
+<p>Lets assume that interest rate=10.0 # hence r = ((10/12)/100) = 0.00833</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='25.png') }}"/>
+   </div><br>
+<p>Additional Features :</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='26.png') }}"/>
+   </div><br>
+<p>Bin Information :
+</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='27.png') }}"/>
+   </div><br>
+<p>Drop Unwanted Column :</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='28.png') }}"/>
+   </div>
+<br>
+<p>Size after feature engineering :</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='29.png') }}"/>
+   </div><br>
+<p>We have added 8 new features</p><br>
+<h4>Building Machine Learning Model:</h4>
+<p>Creating X (input variables) and Y (Target Variable) from the new_train data.</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='30.png') }}"/>
+   </div><br>
+<p>Using train test split on the training data for validation</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='31.png') }}"/>
+   </div><br>
+<p>We have a (70:30) split on the training data.</p>
+<br>
+<h4>Using ML algorithm for training</h4>
+<p>We have used multiple algorithms for training purposes like Decision Tree, Random Forest, SVC, Logistic Regression, XGB Regressor, etc.</p>
+
+<p>Among all the algorithms logistic regression performs best on the validation data with an accuracy score of 82.7%.</p>
+<div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='32.png') }}"/>
+   </div><br>
+<p>After getting an accuracy of 82.7% I tried fine-tuning it to improve my accuracy score using GridSearchCV.</p>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='33.png') }}"/>
+   </div><br>
+<p>The best parameters I got after fine-tuning were:</p>
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='34.png') }}"/>
+   </div><br>
+After fine-tuning the logistic regression model the accuracy score improved from 82.7% to 83.24%.
+   <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='35.png') }}"/>
+   </div><br>
+<p>Predicting on test data</p>
+ <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='36.png') }}"/>
+   </div><br>
+   <p>Prepare Sumbisson file:</p>
+ <div style="text-align: center; margin-top: 20px">
+       <img style="max-width: 600px" src="{{ url_for('static', filename='37.png') }}"/>
+   </div><br>
+   <h2>Conclusion</h2>
+<p>After the Final Submission of test data, my accuracy score was 78%.
+
+Feature engineering helped me increase my accuracy.
+
+Amazingly Logistic Regression worked better than all other Ensemble models.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<br><br><br><br>
+<footer>
+      <p>
+        Developed with ❤️ by Priya
+      </p> 
+      <div class="media-icons">
+        <a href="https://www.linkedin.com/in/priyanka-r-3085a61a7/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Priyar596"><i class="fab fa-github"></i></a>
+                <a href="https://medium.com/@priyar596"><i class="fab fa-medium"></i></a>
+
+      </div>
+    </footer>
+
+  </body>
+</html>
